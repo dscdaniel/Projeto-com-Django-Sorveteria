@@ -137,7 +137,6 @@ Este projeto foi desenvolvido com o objetivo de:
 
 ## 👨‍💻 Autor
 
-Desenvolvido por você 💪
-(Adicione aqui seu GitHub depois)
+Desenvolvido por dscdaniel💪
 
 ---
