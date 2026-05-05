@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-danger">
+                <div class="card-body">
+                    <h2 class="card-title text-center text-danger mb-4">⚠️ Deletar Sorvete</h2>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Atenção!</strong> Esta ação é irreversível.
+                    </div>
+
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <p><strong>Sabor:</strong> {{ sorvete.sabor }}</p>
+                            <p><strong>Descrição:</strong> {{ sorvete.descricao }}</p>
+                            <p><strong>Preço:</strong> R$ {{ sorvete.preco }}</p>
+                            <p><strong>Categoria:</strong> {{ sorvete.categoria.nome }}</p>
+                            <p><strong>Fornecedor:</strong> {{ sorvete.fornecedor.nome_empresa }}</p>
+                        </div>
+                    </div>
+
+                    <p class="text-center mb-4">
+                        Tem certeza que deseja deletar o sorvete <strong>{{ sorvete.sabor }}</strong>?
+                    </p>
+
+                    <form method="POST" class="d-flex gap-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger flex-grow-1">
+                            <i class="bi bi-trash"></i> Sim, Deletar
+                        </button>
+                        <a href="{% url 'cardapio' %}" class="btn btn-secondary flex-grow-1">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+    }
+    
+    .btn-danger {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        border: none;
+    }
+    
+    .btn-danger:hover {
+        background: linear-gradient(135deg, #c82333 0%, #dc3545 100%);
+    }
+</style>
+{% endblock %}

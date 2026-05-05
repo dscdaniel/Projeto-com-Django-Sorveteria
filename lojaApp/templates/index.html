@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Bem-vindo - Sorveteria{% endblock %}
+
+{% block content %}
+
+<style>
+    .index-container {
+        padding: 0;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(135deg, #FFF8F9 0%, #FFE8F0 50%, #F0FFFF 100%);
+        padding: 5rem 2rem;
+        text-align: center;
+        border-bottom: 5px solid #FF6B9D;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        color: #FF6B9D;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: #6C5CE7;
+        margin-bottom: 2rem;
+        font-weight: 600;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+
+    /* Seção de Navegação por Cards */
+    .navegacao-section {
+        padding: 4rem 2rem;
+        background: linear-gradient(180deg, transparent 0%, rgba(255, 107, 157, 0.05) 100%);
+    }
+
+    .navegacao-title {
+        text-align: center;
+        font-size: 2rem;
+        color: #FF6B9D;
+        margin-bottom: 3rem;
+        font-weight: 700;
+    }
+
+    .navegacao-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .nav-card {
+        background: white;
+        border-radius: 18px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 3px solid #FFE8F0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: inherit;
+    }
+
+    .nav-card:hover {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 16px 48px rgba(255, 107, 157, 0.2);
+        border-color: #FF6B9D;
+    }
+
+    .nav-card-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1.2rem;
+        transition: all 0.3s ease;
+    }
+
+    .nav-card:hover .nav-card-icon {
+        transform: scale(1.2) rotate(10deg);
+    }
+
+    .nav-card h2 {
+        font-size: 1.6rem;
+        color: #FF6B9D;
+        margin-bottom: 0.8rem;
+        border: none;
+        padding: 0;
+    }
+
+    .nav-card p {
+        color: #888;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Seção "Por Que Nos Escolher?" */
+    .destaque-section {
+        padding: 5rem 2rem;
+        background: linear-gradient(135deg, #F5F5DC 0%, #FFE8F0 50%, #F0FFFF 100%);
+    }
+
+    .destaque-section h2 {
+        text-align: center;
+        font-size: 2rem;
+        color: #FF6B9D;
+        margin-bottom: 3rem;
+        border: none;
+        padding: 0;
+    }
+
+    .destaque-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .destaque-item {
+        background: white;
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border-top: 4px solid #FF6B9D;
+    }
+
+    .destaque-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(255, 107, 157, 0.15);
+    }
+
+    .destaque-icon {
+        font-size: 2.5rem;
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .destaque-item h3 {
+        color: #FF6B9D;
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .destaque-item p {
+        color: #777;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #FF6B9D 0%, #6C5CE7 100%);
+        text-align: center;
+        color: white;
+    }
+
+    .cta-section h2 {
+        font-size: 2rem;
+        color: white;
+        margin-bottom: 1.5rem;
+        border: none;
+        padding: 0;
+    }
+
+    .cta-section p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cta-btn {
+        padding: 1rem 2rem;
+        border: 2px solid white;
+        background: transparent;
+        color: white;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .cta-btn:hover {
+        background: white;
+        color: #FF6B9D;
+        transform: scale(1.05);
+    }
+
+    .cta-btn-primary {
+        background: white;
+        color: #FF6B9D;
+    }
+
+    .cta-btn-primary:hover {
+        background: transparent;
+        color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .navegacao-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .destaque-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+        }
+
+        .cta-btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="index-container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title slide-in-top">🍦 Bem-vindo à Nossa Sorveteria!</h1>
+        <p class="hero-subtitle fade-in-bounce">Sabores Artesanais Premiados</p>
+        
+        <!-- Sorvete Animado -->
+        <div class="sorvete-animado fade-in-bounce">
+            <div class="bola-sorvete"></div>
+            <div class="casquinha"></div>
+        </div>
+
+        <p class="hero-text slide-in-bottom">
+            Desde 2015, preparamos sorvetes de qualidade premium com os melhores ingredientes naturais. 
+            Venha conhecer nossa variedade e encontrar seu sabor favorito!
+        </p>
+    </section>
+
+    <!-- Navegação Principal -->
+    <section class="navegacao-section">
+        <h2 class="navegacao-title">Explore Nossa Sorveteria</h2>
+        <div class="navegacao-grid">
+            <a href="{% url 'cardapio' %}" class="nav-card slide-in-left">
+                <div class="nav-card-icon">🍨</div>
+                <h2>Cardápio Completo</h2>
+                <p>Descubra todos os nossos sabores incríveis com preços e informações detalhadas</p>
+            </a>
+
+            <a href="{% url 'galeria' %}" class="nav-card fade-in-bounce">
+                <div class="nav-card-icon">📸</div>
+                <h2>Nossa Galeria</h2>
+                <p>Veja as melhores fotos de nossos sorvetes artesanais</p>
+            </a>
+
+            <a href="{% url 'feedback' %}" class="nav-card slide-in-right">
+                <div class="nav-card-icon">💬</div>
+                <h2>Feedback & Avaliações</h2>
+                <p>Deixe seu comentário e veja o que outros clientes acham</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Seção "Por Que Nos Escolher?" -->
+    <section class="destaque-section">
+        <h2>✨ Por Que Nos Escolher?</h2>
+        <div class="destaque-grid">
+            <div class="destaque-item">
+                <span class="destaque-icon">🌱</span>
+                <h3>Ingredientes Naturais</h3>
+                <p>Utilizamos apenas ingredientes selecionados e de alta qualidade na composição de cada sabor</p>
+            </div>
+            <div class="destaque-item">
+                <span class="destaque-icon">👨‍🍳</span>
+                <h3>Feito à Mão</h3>
+                <p>Cada sorvete é preparado com técnicas artesanais e muito cuidado</p>
+            </div>
+            <div class="destaque-item">
+                <span class="destaque-icon">❤️</span>
+                <h3>Feito com Amor</h3>
+                <p>Preparamos com paixão e dedicação para proporcionar a melhor experiência</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Pronto para Provar Nossos Sorvetes?</h2>
+        <p>Visite nossa sorveteria e descubra o sorvete perfeito para você!</p>
+        <div class="cta-buttons">
+            <a href="{% url 'cardapio' %}" class="cta-btn cta-btn-primary">Ver Cardápio</a>
+            <a href="{% url 'feedback' %}" class="cta-btn">Deixar Avaliação</a>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">✏️ Editar Sorvete</h2>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="sabor" class="form-label">Sabor</label>
+                            <input type="text" class="form-control" 
+                                   id="sabor" name="sabor" value="{{ sorvete.sabor }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Descrição</label>
+                            <textarea class="form-control" 
+                                      id="descricao" name="descricao" rows="4" required>{{ sorvete.descricao }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="preco" class="form-label">Preço (R$)</label>
+                            <input type="number" class="form-control" step="0.01" 
+                                   id="preco" name="preco" value="{{ sorvete.preco }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <select class="form-select" id="categoria" name="categoria" required>
+                                {% for categoria in categorias %}
+                                    <option value="{{ categoria.id }}" {% if categoria.id == sorvete.categoria.id %}selected{% endif %}>
+                                        {{ categoria.nome }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fornecedor" class="form-label">Fornecedor</label>
+                            <select class="form-select" id="fornecedor" name="fornecedor" required>
+                                {% for fornecedor in fornecedores %}
+                                    <option value="{{ fornecedor.id }}" {% if fornecedor.id == sorvete.fornecedor.id %}selected{% endif %}>
+                                        {{ fornecedor.nome_empresa }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="opcoes_dieteticas" class="form-label">Opções Dietéticas</label>
+                            <div class="form-check">
+                                {% for opcao in opcoes_dieteticas %}
+                                    <input class="form-check-input" type="checkbox" 
+                                           id="opcao_{{ opcao.id }}" name="opcoes_dieteticas" 
+                                           value="{{ opcao.id }}"
+                                           {% if opcao in sorvete.opcoes_dieteticas.all %}checked{% endif %}>
+                                    <label class="form-check-label" for="opcao_{{ opcao.id }}">
+                                        {{ opcao.nome }}
+                                    </label><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning flex-grow-1">
+                                <i class="bi bi-pencil-square"></i> Atualizar Sorvete
+                            </button>
+                            <a href="{% url 'cardapio' %}" class="btn btn-secondary flex-grow-1">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 15px;
+    }
+    
+    .card-title {
+        color: #333;
+        font-weight: bold;
+    }
+    
+    .btn-warning {
+        background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+        border: none;
+        color: white;
+    }
+    
+    .btn-warning:hover {
+        background: linear-gradient(135deg, #ff9800 0%, #ffc107 100%);
+        color: white;
+    }
+</style>
+{% endblock %}

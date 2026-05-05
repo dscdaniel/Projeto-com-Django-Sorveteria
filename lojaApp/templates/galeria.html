@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Galeria de Sorvetes{% endblock %}
+
+{% block content %}
+
+<style>
+    /* Galeria Container */
+    .galeria-container {
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, #FFF5F8 0%, #FFE8F0 50%, #FFF0F5 100%);
+        min-height: 100vh;
+    }
+
+    .galeria-container h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #A8598E;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    .galeria-subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #999;
+        margin-bottom: 3rem;
+        font-style: italic;
+    }
+
+    /* Grid de Galeria */
+    .galeria-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.8rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Card de Foto */
+    .foto-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .foto-card:hover {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 16px 40px rgba(193, 68, 140, 0.2);
+    }
+
+    /* Imagem */
+    .foto-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        transition: all 0.4s ease;
+    }
+
+    .foto-card:hover img {
+        filter: brightness(1.1) saturate(1.1);
+        transform: scale(1.05);
+    }
+
+    /* Descrição */
+    .foto-descricao {
+        padding: 1.5rem;
+        background: white;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .foto-descricao h3 {
+        font-size: 1.3rem;
+        color: #A8598E;
+        margin: 0 0 0.8rem 0;
+        font-weight: 700;
+    }
+
+    .foto-descricao p {
+        font-size: 0.9rem;
+        color: #777;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    /* Responsividade */
+    @media (max-width: 1024px) {
+        .galeria-grid {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .galeria-container h1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .galeria-container {
+            padding: 2rem 1rem;
+        }
+
+        .galeria-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .galeria-container h1 {
+            font-size: 1.8rem;
+        }
+
+        .galeria-subtitle {
+            font-size: 0.95rem;
+        }
+
+        .foto-card img {
+            height: 180px;
+        }
+
+        .foto-descricao {
+            padding: 1rem;
+        }
+
+        .foto-descricao h3 {
+            font-size: 1.1rem;
+        }
+
+        .foto-descricao p {
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .galeria-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .foto-card img {
+            height: 150px;
+        }
+
+        .galeria-container h1 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<div class="galeria-container">
+    <h1>🍦 Nossos Deliciosos Sorvetes</h1>
+    <p class="galeria-subtitle">Conheça os sabores que fazem nossos clientes voltarem sempre</p>
+    
+    <div class="galeria-grid">
+        <!-- Sorvete 1 -->
+        <div class="foto-card">
+            <img src="{% static 'img/morango.jpg' %}" alt="Sorvete Morango">
+            <div class="foto-descricao">
+                <h3>Morango</h3>
+                <p>Morango fresco e natural. Puro sabor de frutas vermelhas em cada colherada.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 2 -->
+        <div class="foto-card">
+            <img src="{% static 'img/chocolate.jpg' %}" alt="Sorvete Chocolate">
+            <div class="foto-descricao">
+                <h3>Chocolate</h3>
+                <p>Chocolate belga premium. Cremoso e irresistível para os amantes de chocolate.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 3 -->
+        <div class="foto-card">
+            <img src="{% static 'img/baunilha.jpg' %}" alt="Sorvete Baunilha">
+            <div class="foto-descricao">
+                <h3>Baunilha</h3>
+                <p>Clássico que nunca sai de moda. Baunilha autêntica Madagascar pura.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 4 -->
+        <div class="foto-card">
+            <img src="{% static 'img/pistachi.webp' %}" alt="Sorvete Pistachi">
+            <div class="foto-descricao">
+                <h3>Pistachi</h3>
+                <p>Sofisticado e saudável. Pistachi italiano premium com texture única.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 5 -->
+        <div class="foto-card">
+            <img src="{% static 'img/limao.jpg' %}" alt="Sorvete Limão">
+            <div class="foto-descricao">
+                <h3>Limão</h3>
+                <p>Refrescante e leve. Perfeito para os dias quentes com acidez balanceada.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 6 -->
+        <div class="foto-card">
+            <img src="{% static 'img/coffe.jpg' %}" alt="Sorvete Café">
+            <div class="foto-descricao">
+                <h3>Café</h3>
+                <p>Café arábica selecionado. Para quem ama o aroma e sabor do bom café.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 7 -->
+        <div class="foto-card">
+            <img src="{% static 'img/melancia.webp' %}" alt="Sorvete Melancia">
+            <div class="foto-descricao">
+                <h3>Melancia</h3>
+                <p>Melancia fresca e doce. Sabor frutado perfeito para o verão.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 8 -->
+        <div class="foto-card">
+            <img src="{% static 'img/menta.jpg' %}" alt="Sorvete Menta">
+            <div class="foto-descricao">
+                <h3>Menta</h3>
+                <p>Menta fresca com chocolate. Combinação clássica que esfria e revigoriza.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 9 -->
+        <div class="foto-card">
+            <img src="{% static 'img/caramelo.jpg' %}" alt="Sorvete Caramelo">
+            <div class="foto-descricao">
+                <h3>Caramelo</h3>
+                <p>Caramelo belga cremoso. Doce, macio e absolutamente irresistível.</p>
+            </div>
+        </div>
+
+        <!-- Sorvete 10 -->
+        <div class="foto-card">
+            <img src="{% static 'img/fvermelha.webp' %}" alt="Sorvete Frutas Vermelhas">
+            <div class="foto-descricao">
+                <h3>Frutas Vermelhas</h3>
+                <p>Mix de frutas vermelhas. Morango, framboesa e mirtilo em perfeita harmonia.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

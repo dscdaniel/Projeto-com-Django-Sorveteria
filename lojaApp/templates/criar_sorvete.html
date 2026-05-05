@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">🍦 Criar Novo Sorvete</h2>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST" action="{% url 'criar_sorvete' %}">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="sabor" class="form-label">Sabor</label>
+                            <input type="text" class="form-control" 
+                                   id="sabor" name="sabor" placeholder="Ex: Chocolate" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descricao" class="form-label">Descrição</label>
+                            <textarea class="form-control" 
+                                      id="descricao" name="descricao" rows="4" 
+                                      placeholder="Descreva o sorvete..." required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="preco" class="form-label">Preço (R$)</label>
+                            <input type="number" class="form-control" step="0.01" 
+                                   id="preco" name="preco" placeholder="10.00" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <select class="form-select" id="categoria" name="categoria" required>
+                                <option value="">Selecione uma categoria</option>
+                                {% for categoria in categorias %}
+                                    <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fornecedor" class="form-label">Fornecedor</label>
+                            <select class="form-select" id="fornecedor" name="fornecedor" required>
+                                <option value="">Selecione um fornecedor</option>
+                                {% for fornecedor in fornecedores %}
+                                    <option value="{{ fornecedor.id }}">{{ fornecedor.nome_empresa }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="opcoes_dieteticas" class="form-label">Opções Dietéticas</label>
+                            <div class="form-check">
+                                {% for opcao in opcoes_dieteticas %}
+                                    <input class="form-check-input" type="checkbox" 
+                                           id="opcao_{{ opcao.id }}" name="opcoes_dieteticas" 
+                                           value="{{ opcao.id }}">
+                                    <label class="form-check-label" for="opcao_{{ opcao.id }}">
+                                        {{ opcao.nome }}
+                                    </label><br>
+                                {% empty %}
+                                    <p class="text-muted">Nenhuma opção dietética disponível</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success flex-grow-1">
+                                <i class="bi bi-plus-circle"></i> Criar Sorvete
+                            </button>
+                            <a href="{% url 'cardapio' %}" class="btn btn-secondary flex-grow-1">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 15px;
+    }
+    
+    .card-title {
+        color: #333;
+        font-weight: bold;
+    }
+    
+    .btn-success {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        border: none;
+    }
+    
+    .btn-success:hover {
+        background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+    }
+</style>
+{% endblock %}

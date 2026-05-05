@@ -1,0 +1,920 @@
+/* ================================================
+    ESTILOS GLOBAIS - SORVETERIA 🍦
+   ================================================ */
+
+:root {
+    /* Cores Temáticas de Sorveteria - Versão Moderna */
+    --ice-cream-pink: #FF6B9D;
+    --ice-cream-mint: #26D07C;
+    --ice-cream-vanilla: #FFD700;
+    --ice-cream-chocolate: #8B6F47;
+    --ice-cream-strawberry: #FF4757;
+    --ice-cream-blueberry: #6C5CE7;
+    
+    /* Cores Complementares */
+    --primary-color: #FF6B9D;
+    --secondary-color: #6C5CE7;
+    --dark-color: #2D3436;
+    --light-color: #FFF8F9;
+    --text-color: #4A4A4A;
+    --border-color: #FFE0E6;
+    --success-color: #26D07C;
+    --warning-color: #FDCB6E;
+    --danger-color: #FF4757;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
+    color: var(--text-color);
+    line-height: 1.7;
+    background: linear-gradient(135deg, #FFF8F0 0%, #FFE4E1 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Efeito de padrão no fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 105, 180, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(106, 90, 205, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ================================================
+    CONTAINER
+   ================================================ */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ================================================
+    HEADER & NAVEGAÇÃO
+   ================================================ */
+
+header {
+    background: linear-gradient(135deg, #FF6B9D 0%, #6C5CE7 100%);
+    box-shadow: 0 8px 32px rgba(255, 107, 157, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header.custom-header {
+    padding: 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* ================================================
+    FOOTER
+   ================================================ */
+
+footer {
+    background: linear-gradient(135deg, #2D3436 0%, #000000 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-top: 5rem;
+    border-top: 4px solid #FF6B9D;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--ice-cream-pink);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #A8D5BA;
+    text-decoration: underline;
+}
+
+/* ================================================
+    TIPOGRAFIA
+   ================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    color: var(--dark-color);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #FF6B9D;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+    font-size: 2.2rem;
+    color: #FF6B9D;
+    border-bottom: 3px solid #FF6B9D;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* ================================================
+    LINKS E TEXTO
+   ================================================ */
+
+a {
+    color: #C1448C;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #8B7B9E;
+    text-decoration: underline;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: #888;
+}
+
+.text-white {
+    color: white;
+}
+
+/* ================================================
+    BOTÕES
+   ================================================ */
+
+button, .btn, input[type="submit"] {
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary, .btn-primary:not(.btn-primary.disabled) {
+    background: linear-gradient(135deg, #FF6B9D, #FF4757);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6C5CE7, #5F3DC4);
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #26D07C, #00B894);
+    color: white;
+}
+
+.btn-success:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(38, 208, 124, 0.4);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #FDCB6E, #FFA502);
+    color: white;
+}
+
+.btn-warning:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(253, 203, 110, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #FF4757, #FF3838);
+    color: white;
+}
+
+.btn-danger:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 71, 87, 0.4);
+}
+
+.btn-sm {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+}
+
+button:disabled, .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ================================================
+    CARDS
+   ================================================ */
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+    z-index: 0;
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(193, 68, 140, 0.12);
+    border-color: var(--border-color);
+}
+
+.card-title {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+}
+
+.card-body {
+    position: relative;
+    z-index: 1;
+}
+
+/* ================================================
+    CARDÁPIO - SORVETES
+   ================================================ */
+
+.cardapio-container {
+    padding: 4rem 2rem;
+}
+
+.sorvetes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.sorvete-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    border: 3px solid var(--border-color);
+}
+
+.sorvete-card::before {
+    content: '🍦';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    opacity: 0.2;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.sorvete-card:hover::before {
+    opacity: 0.5;
+    transform: scale(1.3) rotate(-15deg);
+}
+
+.sorvete-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(193, 68, 140, 0.15);
+    border-color: var(--ice-cream-pink);
+}
+
+.sorvete-info {
+    padding: 2rem;
+    background: linear-gradient(135deg, #FFF8F0 0%, #FFE4E1 100%);
+    position: relative;
+    z-index: 2;
+}
+
+.sorvete-nome {
+    font-size: 1.6rem;
+    color: #C1448C;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.sorvete-descricao {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    min-height: 60px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #A8D5BA, #8BC59C);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.sorvete-footer {
+    padding: 1.5rem 2rem;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid var(--border-color);
+    position: relative;
+    z-index: 2;
+}
+
+.fornecedor {
+    font-size: 0.85rem;
+    color: #999;
+    margin: 0;
+    font-weight: 600;
+}
+
+.preco {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #C1448C;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.preco-container {
+    background: linear-gradient(135deg, rgba(193, 68, 140, 0.08), rgba(168, 213, 186, 0.08));
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 2rem 1rem 2rem;
+}
+
+/* ================================================
+    FORMULÁRIOS
+   ================================================ */
+
+.form-control, .form-select, input[type="text"], input[type="email"], input[type="password"], input[type="number"], textarea, select {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-control:focus, .form-select:focus, input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--ice-cream-pink);
+    box-shadow: 0 0 0 4px rgba(255, 69, 180, 0.1);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.7rem;
+    accent-color: var(--ice-cream-pink);
+    cursor: pointer;
+}
+
+.form-check-label {
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* ================================================
+    ALERTS
+   ================================================ */
+
+.alert {
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    border-left: 5px solid;
+    margin-bottom: 1.5rem;
+    animation: slideInDown 0.4s ease;
+    font-weight: 500;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    background: linear-gradient(135deg, rgba(168, 213, 186, 0.15), rgba(168, 213, 186, 0.2));
+    border-color: #A8D5BA;
+    color: #5B8B6F;
+}
+
+.alert-error, .alert-danger {
+    background: linear-gradient(135deg, rgba(200, 90, 122, 0.15), rgba(200, 90, 122, 0.2));
+    border-color: var(--danger-color);
+    color: #834E66;
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.15), rgba(212, 165, 116, 0.2));
+    border-color: #D4A574;
+    color: #8B6F3A;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, rgba(139, 123, 158, 0.15), rgba(139, 123, 158, 0.2));
+    border-color: var(--ice-cream-blueberry);
+    color: #5F5770;
+}
+
+/* ================================================
+    UTILITÁRIOS
+   ================================================ */
+
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+.mb-4 { margin-bottom: 4rem; }
+
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mt-4 { margin-top: 4rem; }
+.mt-5 { margin-top: 5rem; }
+
+.p-1 { padding: 1rem; }
+.p-2 { padding: 2rem; }
+.p-3 { padding: 3rem; }
+
+.gap-1 { gap: 1rem; }
+.gap-2 { gap: 2rem; }
+.gap-3 { gap: 3rem; }
+
+.d-flex {
+    display: flex;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* ================================================
+    RESPONSIVIDADE
+   ================================================ */
+
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .sorvetes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    header .container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .sorvetes-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .sorvete-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .preco {
+        font-size: 1.5rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    button, .btn {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.9rem;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    nav ul {
+        gap: 0.5rem;
+    }
+
+    nav a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .sorvete-info {
+        padding: 1.5rem;
+    }
+
+    .sorvete-footer {
+        padding: 1rem 1.5rem;
+    }
+
+    button, .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .admin-actions {
+        padding: 0 1.5rem 0.5rem 1.5rem;
+    }
+}
+
+/* ================================================
+    ANIMAÇÕES
+   ================================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease;
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+/* ================================================
+    OVERRIDE BOOTSTRAP
+   ================================================ */
+
+.navbar {
+    background: linear-gradient(135deg, #FF6B9D 0%, #6A5ACD 100%) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--ice-cream-vanilla) !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--ice-cream-vanilla) !important;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+/* ================================================
+    PÁGINAS ESPECÍFICAS
+   ================================================ */
+
+/* Página de Index/Home */
+.hero {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(106, 90, 205, 0.1) 100%);
+    border-radius: 20px;
+    margin: 3rem 0;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Galeria */
+/* CSS da galeria foi movido para o template galeria.html para customização específica */
+
+/* Feedback/Comentários */
+.feedback-container {
+    padding: 4rem 2rem;
+}
+
+.comentario-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--ice-cream-pink);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.comentario-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(255, 69, 180, 0.15);
+}
+
+.comentario-autor {
+    font-weight: 700;
+    color: var(--ice-cream-pink);
+    margin-bottom: 0.5rem;
+}
+
+.comentario-texto {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Form Sorvete */
+.form-sorvete-container {
+    padding: 4rem 2rem;
+}
+
+.form-section {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+}
+
+.form-section h3 {
+    border-bottom: 3px solid var(--ice-cream-pink);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Loader/Spinner */
+.spinner {
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--ice-cream-pink);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success/Error Messages */
+.message {
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    animation: slideInDown 0.4s ease;
+}
